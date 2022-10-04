@@ -1,0 +1,18 @@
+ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  list-style: none;
+  box-sizing: border-box;
+}
+li a {
+  font-weight: lighter;
+}
+li a.active {
+  font-weight: bold;
+}

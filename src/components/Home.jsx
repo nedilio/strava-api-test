@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import { StravaContext } from "../context/StravaContext";
+
 const Home = () => {
+  const { userLogged, logoutUser } = useContext(StravaContext);
   const { VITE_CLIENT_ID } = import.meta.env;
   const redirectUrl = "http://localhost:5173/redirect";
   const scope = "read";
@@ -7,7 +11,11 @@ const Home = () => {
   };
   return (
     <div>
-      <button onClick={handleLogin}>Login</button>
+      {userLogged ? (
+        <button onClick={logoutUser}>Logout</button>
+      ) : (
+        <button onClick={handleLogin}>Strava Login</button>
+      )}
     </div>
   );
 };
