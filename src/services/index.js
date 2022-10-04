@@ -1,9 +1,8 @@
 import axios from "axios";
 const BASEURL = "https://www.strava.com/api/v3";
 const athleteId = "1326693";
-import.meta.env;
-const { VITE_ACCESS_TOKEN, VITE_CLIENT_ID, VITE_CLIENT_SECRET } = import.meta
-  .env;
+const envVars = import.meta.env;
+const { VITE_CLIENT_ID, VITE_CLIENT_SECRET } = envVars;
 
 export const getUser = (code) => {
   return axios
@@ -31,5 +30,15 @@ export const getAthlete = (token) => {
   return axios
     .get(`${BASEURL}/athlete`, config)
     .then((response) => response)
+    .catch((err) => err.response);
+};
+
+export const getActivities = (activities, token) => {
+  console.log(activities, token);
+  return axios
+    .get(
+      `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=${activities}`
+    )
+    .then((res) => res.data)
     .catch((err) => err.response);
 };

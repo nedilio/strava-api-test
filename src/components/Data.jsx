@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { getUser } from "../services";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, Link } from "react-router-dom";
 
 import "./Data.css";
 import { StravaContext } from "../context/StravaContext";
 
 const data = () => {
-  const { logginUser, addUser } = useContext(StravaContext);
+  const { logginUser, addUser, userLogged } = useContext(StravaContext);
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
   const [status, setStatus] = useState(0);
@@ -15,13 +15,19 @@ const data = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("Is user Logged? ", userLogged);
       const data = await getUser(code);
-      setStatus(data.status);
-      addUser(data.data);
-      logginUser();
-      navigate(`/user`);
+      console.log(data);
+      if (data.status === 200) {
+        setStatus(data.status);
+        logginUser();
+        addUser(data.data);
+        navigate("/user");
+      }
     };
-    fetchData();
+    if (!userLogged) {
+      fetchData();
+    }
   }, []);
 
   return (
@@ -31,6 +37,11 @@ const data = () => {
         src={`https://http.cat/${status}`}
         alt="result"
       />
+      {status === 200 && (
+        <button>
+          <Link to="/user">User</Link>
+        </button>
+      )}
     </div>
   );
 };

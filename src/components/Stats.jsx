@@ -1,7 +1,6 @@
 import "./Stats.css";
 
 const Stats = ({ stats, clearStats }) => {
-  console.log(stats);
   return (
     <div className="stats-container">
       <div className="stats">
