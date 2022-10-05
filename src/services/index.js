@@ -34,10 +34,18 @@ export const getAthlete = (token) => {
 };
 
 export const getActivities = (activities, token) => {
-  console.log(activities, token);
   return axios
     .get(
-      `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=${activities}`
+      `${BASEURL}/athlete/activities?access_token=${token}&per_page=${activities}`
+    )
+    .then((res) => res.data)
+    .catch((err) => err.response);
+};
+
+export const getActivity = (id, token) => {
+  return axios
+    .get(
+      `${BASEURL}/activities/7902248562?access_token=fad9dad0b223e51909c58f0ed304753641f0ea15`
     )
     .then((res) => res.data)
     .catch((err) => err.response);

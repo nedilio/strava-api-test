@@ -10,7 +10,11 @@ const Nav = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      <li>{userLogged && <NavLink to="/user">User</NavLink>}</li>
+      {userLogged && (
+        <li>
+          <NavLink to="/user">User</NavLink>
+        </li>
+      )}
     </ul>
   );
 };

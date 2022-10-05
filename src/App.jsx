@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import StravaContextProvider from "./context/StravaContext";
 import Nav from "./components/Nav";
 import User from "./Pages/User";
+import Activity from "./Pages/Activity";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/redirect/exchange_token" element={<Data />} />
             <Route path="/user" element={<User />} />
+            <Route path="/activity/:id" element={<Activity />} />
           </Routes>
         </BrowserRouter>
       </StravaContextProvider>

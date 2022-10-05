@@ -6,7 +6,8 @@ const Home = () => {
   const { VITE_CLIENT_ID } = import.meta.env;
   const baseUrl = window.location.href;
   const redirectUrl = `${baseUrl}redirect`;
-  const scope = "activity:read_all";
+  const scope =
+    "read_all,profile:read_all,profile:write,activity:read,activity:read_all,activity:write";
   const handleLogin = () => {
     window.location = `http://www.strava.com/oauth/authorize?client_id=${VITE_CLIENT_ID}&response_type=code&redirect_uri=${redirectUrl}/exchange_token&approval_prompt=force&scope=${scope}`;
   };

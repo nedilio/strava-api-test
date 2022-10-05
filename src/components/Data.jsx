@@ -15,9 +15,7 @@ const data = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("Is user Logged? ", userLogged);
       const data = await getUser(code);
-      console.log(data);
       if (data.status === 200) {
         setStatus(data.status);
         logginUser();

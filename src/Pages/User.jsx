@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getActivities, getStats } from "../services";
 import Stats from "../components/Stats";
 import Activities from "../components/Activities";
+import mapboxgl from "mapbox-gl";
 
 const User = () => {
   const [stats, setStats] = useState({});
