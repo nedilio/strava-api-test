@@ -21,7 +21,7 @@ const data = () => {
         logginUser();
         addUser(data.data);
         setTimeout(() => {
-          navigate("/user");
+          // navigate("/user");
         }, 1000);
       }
     };
