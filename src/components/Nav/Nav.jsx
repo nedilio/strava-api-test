@@ -1,10 +1,10 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { StravaContext } from "../../context/StravaContext";
+// import { StravaContext } from "../../context/StravaContext";
 import "./Nav.css";
 
 const Nav = () => {
-  const { userLogged } = useContext(StravaContext);
+  // const { userLogged } = useContext(StravaContext);
   return (
     <ul>
       <li>

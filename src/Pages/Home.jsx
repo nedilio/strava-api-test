@@ -14,7 +14,7 @@ const Home = () => {
   };
   const navigate = useNavigate();
   useEffect(() => {
-    if (user != {}) return navigate("/user");
+    if (userLogged) return navigate("/user");
   }, [user]);
 
   return (

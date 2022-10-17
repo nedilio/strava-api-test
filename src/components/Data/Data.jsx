@@ -20,7 +20,9 @@ const data = () => {
         setStatus(data.status);
         logginUser();
         addUser(data.data);
-        navigate("/user");
+        setTimeout(() => {
+          navigate("/user");
+        }, 1000);
       }
     };
     if (!userLogged) {

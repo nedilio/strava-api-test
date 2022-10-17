@@ -8,12 +8,14 @@ const StravaContextProvider = (props) => {
   useEffect(() => {
     const userStorage = localStorage.getItem("user");
     console.log(typeof userStorage);
-    console.log(userStorage);
+    console.log("userStorage: ", JSON.parse(userStorage));
 
     if (userStorage != null) {
-      console.log("tengo algo en local sotrage y lo traigo");
+      console.log("tengo usuario en local storage y lo traigo");
       setUser(JSON.parse(userStorage));
       setUserLogged(true);
+    } else {
+      console.log("no tengo usuario en local storage");
     }
   }, []);
 
