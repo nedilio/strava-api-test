@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Map from "../components/Map";
+import Map from "../components/Map/Map";
 import { StravaContext } from "../context/StravaContext";
 import { getActivity } from "../services";
 
@@ -11,20 +11,32 @@ const Activity = () => {
   const [loadMap, setLoadMap] = useState(false);
 
   useEffect(() => {
-    getActivity(id, user.access_token).then((res) => {
-      setActivity(res);
-      setLoadMap(true);
-    });
-  }, []);
+    console.log(user);
+    if (user.access_token) {
+      getActivity(id, user.access_token)
+        .then((res) => {
+          setActivity(res);
+          setLoadMap(true);
+        })
+        .catch((err) => {
+          console.error(err);
+          setActivity({});
+        });
+    } else {
+      setLoadMap(false);
+    }
+  }, [user]);
 
   return (
     <div>
-      {loadMap && (
+      {loadMap ? (
         <Map
           activityMap={activity.map}
           begin={activity.start_latlng}
           end={activity.end_latlng}
         ></Map>
+      ) : (
+        <p>Loading..</p>
       )}
     </div>
   );

@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { StravaContext } from "../context/StravaContext";
 
 const Home = () => {
-  const { userLogged, logoutUser } = useContext(StravaContext);
+  const { user, userLogged, logoutUser } = useContext(StravaContext);
   const { VITE_CLIENT_ID } = import.meta.env;
   const baseUrl = window.location.href;
   const redirectUrl = `${baseUrl}redirect`;
@@ -11,6 +12,11 @@ const Home = () => {
   const handleLogin = () => {
     window.location = `http://www.strava.com/oauth/authorize?client_id=${VITE_CLIENT_ID}&response_type=code&redirect_uri=${redirectUrl}/exchange_token&approval_prompt=force&scope=${scope}`;
   };
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user != {}) return navigate("/user");
+  }, [user]);
+
   return (
     <div>
       {userLogged ? (

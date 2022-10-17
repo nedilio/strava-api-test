@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import polyline from "@mapbox/polyline";
 
 import "./Map.css";
 
 const Map = ({ activityMap, begin, end }) => {
-  let track = polyline.decode(activityMap.polyline, 6);
+  let track = activityMap && polyline.decode(activityMap.polyline, 6);
   track = track.map((coordinates) =>
     coordinates.reverse().map((val) => val * 10)
   );
@@ -28,22 +28,18 @@ const Map = ({ activityMap, begin, end }) => {
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
-    begin.reverse();
-    console.log("iniciando mapa --------");
-    console.log("valor de begin: ", begin);
-    map.current = new mapboxgl.Map({
+    let mapa = map.current;
+    mapa = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
       center: begin,
       zoom: 15,
     });
-    setTimeout(() => {
-      new mapboxgl.Marker().setLngLat(begin).addTo(map.current);
-      new mapboxgl.Marker().setLngLat(end.reverse()).addTo(map.current);
-      // map.current.fitBounds(track.getBounds());
-
-      map.current.addSource("route", geojson);
-      map.current.addLayer({
+    mapa.on("load", () => {
+      new mapboxgl.Marker().setLngLat(begin).addTo(mapa);
+      new mapboxgl.Marker().setLngLat(end).addTo(mapa);
+      mapa.addSource("route", geojson);
+      mapa.addLayer({
         id: "route",
         type: "line",
         source: "route",
@@ -63,10 +59,10 @@ const Map = ({ activityMap, begin, end }) => {
         bounds.extend(coord);
       }
 
-      map.current.fitBounds(bounds, {
+      mapa.fitBounds(bounds, {
         padding: 20,
       });
-    }, 1000);
+    });
   }, []);
   return (
     <div>

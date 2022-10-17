@@ -44,9 +44,7 @@ export const getActivities = (activities, token) => {
 
 export const getActivity = (id, token) => {
   return axios
-    .get(
-      `${BASEURL}/activities/7902248562?access_token=fad9dad0b223e51909c58f0ed304753641f0ea15`
-    )
+    .get(`${BASEURL}/activities/${id}?access_token=${token}`)
     .then((res) => res.data)
     .catch((err) => err.response);
 };

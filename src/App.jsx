@@ -1,9 +1,9 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Data from "./components/Data";
-import Home from "./components/Home";
+import Data from "./components/Data/Data";
+import Home from "./Pages/Home";
 import StravaContextProvider from "./context/StravaContext";
-import Nav from "./components/Nav";
+import Nav from "./components/Nav/Nav";
 import User from "./Pages/User";
 import Activity from "./Pages/Activity";
 

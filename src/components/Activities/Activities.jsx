@@ -1,5 +1,5 @@
 import React from "react";
-import { useElapsed, useKilometers, useSpeed } from "../hooks/index";
+import { useElapsed, useKilometers, useSpeed } from "../../hooks/index";
 import { Link } from "react-router-dom";
 
 const Activities = ({ activities }) => {

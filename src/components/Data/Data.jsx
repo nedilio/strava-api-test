@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { getUser } from "../services";
+import { getUser } from "../../services";
 import { useSearchParams, useNavigate, Link } from "react-router-dom";
 
 import "./Data.css";
-import { StravaContext } from "../context/StravaContext";
+import { StravaContext } from "../../context/StravaContext";
 
 const data = () => {
   const { logginUser, addUser, userLogged } = useContext(StravaContext);
