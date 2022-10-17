@@ -5,6 +5,7 @@ import polyline from "@mapbox/polyline";
 import "./Map.css";
 
 const Map = ({ activityMap, begin, end }) => {
+  console.log(begin, end);
   let track = activityMap && polyline.decode(activityMap.polyline, 6);
   track = track.map((coordinates) =>
     coordinates.reverse().map((val) => val * 10)
@@ -27,7 +28,9 @@ const Map = ({ activityMap, begin, end }) => {
   const map = useRef(null);
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
+    if (map.current) {
+      map.current.remove();
+    }
     let mapa = map.current;
     mapa = new mapboxgl.Map({
       container: mapContainer.current,

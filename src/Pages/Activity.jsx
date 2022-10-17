@@ -11,12 +11,12 @@ const Activity = () => {
   const [loadMap, setLoadMap] = useState(false);
 
   useEffect(() => {
-    console.log(user);
     if (user.access_token) {
       getActivity(id, user.access_token)
         .then((res) => {
           setActivity(res);
           setLoadMap(true);
+          console.log(res);
         })
         .catch((err) => {
           console.error(err);
@@ -32,8 +32,14 @@ const Activity = () => {
       {loadMap ? (
         <Map
           activityMap={activity.map}
-          begin={activity.start_latlng}
-          end={activity.end_latlng}
+          begin={{
+            lon: activity.start_latlng[1],
+            lat: activity.start_latlng[0],
+          }}
+          end={{
+            lon: activity.end_latlng[1],
+            lat: activity.end_latlng[0],
+          }}
         ></Map>
       ) : (
         <p>Loading..</p>

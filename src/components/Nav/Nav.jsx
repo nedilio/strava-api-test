@@ -10,11 +10,11 @@ const Nav = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      {userLogged && (
+      {/* {userLogged && (
         <li>
           <NavLink to="/user">User</NavLink>
         </li>
-      )}
+      )} */}
     </ul>
   );
 };

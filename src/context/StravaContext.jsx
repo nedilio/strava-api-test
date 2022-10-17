@@ -7,12 +7,13 @@ const StravaContextProvider = (props) => {
   const [userLogged, setUserLogged] = useState(false);
   useEffect(() => {
     const userStorage = localStorage.getItem("user");
-    if (userStorage) {
+    console.log(typeof userStorage);
+    console.log(userStorage);
+
+    if (userStorage != null) {
+      console.log("tengo algo en local sotrage y lo traigo");
       setUser(JSON.parse(userStorage));
       setUserLogged(true);
-      console.log(JSON.parse(userStorage));
-    } else {
-      addUser();
     }
   }, []);
 
@@ -22,6 +23,7 @@ const StravaContextProvider = (props) => {
   };
   const logoutUser = () => {
     setUserLogged(false);
+    localStorage.removeItem("user");
   };
   const logginUser = () => {
     setUserLogged(true);
