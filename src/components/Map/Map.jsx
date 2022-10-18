@@ -5,7 +5,6 @@ import polyline from "@mapbox/polyline";
 import "./Map.css";
 
 const Map = ({ activityMap, begin, end }) => {
-  console.log(begin, end);
   let track = activityMap && polyline.decode(activityMap.polyline, 6);
   track = track.map((coordinates) =>
     coordinates.reverse().map((val) => val * 10)
@@ -21,9 +20,7 @@ const Map = ({ activityMap, begin, end }) => {
       },
     },
   };
-
-  mapboxgl.accessToken =
-    "pk.eyJ1IjoibmVkaWxpbyIsImEiOiJjbDZwZ2l4cjAwMDBtM3FxeWgxdDBvN3RwIn0.VGz7NeTCQgWqe0ek6D6v5Q";
+  mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
   const mapContainer = useRef(null);
   const map = useRef(null);
 
@@ -68,7 +65,8 @@ const Map = ({ activityMap, begin, end }) => {
     });
   }, []);
   return (
-    <div>
+    <div className="map">
+      <h3>Actividad</h3>
       <div ref={mapContainer} className="map-container" />
     </div>
   );

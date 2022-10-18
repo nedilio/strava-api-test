@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Map from "../components/Map/Map";
 import { StravaContext } from "../context/StravaContext";
+import { useElapsed, useKilometers, useSpeed } from "../hooks";
 import { getActivity } from "../services";
 
 const Activity = () => {
@@ -26,9 +27,8 @@ const Activity = () => {
       setLoadMap(false);
     }
   }, [user]);
-
   return (
-    <div>
+    <>
       {loadMap ? (
         <Map
           activityMap={activity.map}
@@ -44,7 +44,17 @@ const Activity = () => {
       ) : (
         <p>Loading..</p>
       )}
-    </div>
+      {loadMap && (
+        <div className="ride-stats">
+          <p>AVG 💓 {activity.average_heartrate} BPM</p>
+          <p>AVG 🚴🏻‍♂️💨 {useSpeed(activity.average_speed)} Km/h</p>
+          <p>AVG 🌡 {activity.average_temp}ºC</p>
+          <p>AVG 🔌 git st{activity.average_watts}W</p>
+          <p>📏 {useKilometers(activity.distance)} Km</p>
+          <p>⌚️ {useElapsed(activity.elapsed_time)}</p>
+        </div>
+      )}
+    </>
   );
 };
 

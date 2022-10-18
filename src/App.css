@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  width: 90%;
 }
 
 .logo {
@@ -38,4 +39,17 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.link {
+  font-weight: bolder;
+}
+
+.ride-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.ride-stats p {
+  width: 50%;
 }
